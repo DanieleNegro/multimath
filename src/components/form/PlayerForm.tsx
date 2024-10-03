@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "../../App.css";
-import { useMessageContext } from "../../context/MessageContext";
+import { usePlayerContext } from "../../context/PlayerContext";
 
 const PlayerForm: React.FC = () => {
-  const { setText } = useMessageContext();
+  const playerNameRef = useRef<HTMLInputElement>(null);
+  const factorRef = useRef<HTMLInputElement>(null);
+  const numberProblemsRef = useRef<HTMLInputElement>(null);
+  const { setPlayer } = usePlayerContext();
+  const [playerName, setPlayerName] = useState("");
+  const [factor, setFactor] = useState("");
+  const [numProblems, setNumProblems] = useState("");
 
-  const startGame = () => {
-    setText("Welcome to MultiMath! Starting new game...");
+  const onChangeName = (): void => {
+    if (playerNameRef.current) {
+      setPlayerName(playerNameRef.current.value || "");
+    }
+  };
+  const onChangeFctor = (): void => {
+    if (factorRef.current) {
+      setFactor(factorRef.current.value || "");
+    }
+  };
+  const onChangeNumProblems = (): void => {
+    if (numberProblemsRef.current) {
+      setNumProblems(numberProblemsRef.current.value || "");
+    }
+  };
+
+  const startGame = (e: any): void => {
+    e.preventDefault();
+    setPlayer({
+      name: playerName,
+      factor: factor,
+      numPreblems: numProblems,
+      score: 80,
+    });
   };
 
   return (
@@ -18,9 +46,12 @@ const PlayerForm: React.FC = () => {
           </label>
           <div className="col-sm-2">
             <input
+              ref={playerNameRef}
               type="text"
               className="form-control mb-3"
               placeholder="Player Name"
+              value={playerName}
+              onChange={onChangeName}
             />
           </div>
         </div>
@@ -30,9 +61,12 @@ const PlayerForm: React.FC = () => {
           </label>
           <div className="col-sm-2">
             <input
+              ref={factorRef}
               type="text"
               className="form-control mb-3"
               placeholder="Factor"
+              value={factor}
+              onChange={onChangeFctor}
             />
           </div>
         </div>
@@ -45,9 +79,12 @@ const PlayerForm: React.FC = () => {
           </label>
           <div className="col-sm-2">
             <input
+              ref={numberProblemsRef}
               type="text"
               className="form-control mb-3"
               placeholder="Number of Problems"
+              value={numProblems}
+              onChange={onChangeNumProblems}
             />
           </div>
         </div>

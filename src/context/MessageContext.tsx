@@ -1,12 +1,9 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
+import { Props } from "./Props";
 
 interface IMessageContext {
   text: string;
   setText: (value: string) => void;
-}
-
-interface Props {
-  children?: ReactNode;
 }
 
 const DEFAULT_STATE: IMessageContext = {
@@ -32,6 +29,5 @@ export function MessageProvider({ children, ...props }: Props) {
 }
 
 export const useMessageContext = (): IMessageContext => {
-  const context = useContext(MessageContext);
-  return context;
+  return useContext(MessageContext);
 };
