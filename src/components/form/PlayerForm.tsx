@@ -3,10 +3,10 @@ import "../../App.css";
 import { useMessageContext } from "../../context/MessageContext";
 
 const PlayerForm: React.FC = () => {
-  const context = useMessageContext();
+  const { setText } = useMessageContext();
 
   const startGame = () => {
-    context?.setText("Welcome to MultiMath! Starting new game...");
+    setText("Welcome to MultiMath! Starting new game...");
   };
 
   return (

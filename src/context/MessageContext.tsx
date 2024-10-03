@@ -9,9 +9,12 @@ interface Props {
   children?: ReactNode;
 }
 
-export const MessageContext = createContext<IMessageContext | undefined>(
-  undefined,
-);
+const DEFAULT_STATE: IMessageContext = {
+  text: "",
+  setText: () => {},
+};
+
+export const MessageContext = createContext<IMessageContext>(DEFAULT_STATE);
 
 export function MessageProvider({ children, ...props }: Props) {
   const [text, setText] = useState<string>("");
@@ -28,7 +31,7 @@ export function MessageProvider({ children, ...props }: Props) {
   );
 }
 
-export const useMessageContext = (): IMessageContext | undefined => {
+export const useMessageContext = (): IMessageContext => {
   const context = useContext(MessageContext);
   return context;
 };
