@@ -4,7 +4,7 @@ import "./Game.css";
 import { usePlayerContext } from "../../context/PlayerContext";
 
 const Game: React.FC = () => {
-  const { result, setResult } = usePlayerContext();
+  const { result, results, setResults } = usePlayerContext();
   const inputsRef = useRef<HTMLInputElement[]>([]);
   const [listFault, setListFault] = useState<number[]>([]);
 
@@ -23,6 +23,7 @@ const Game: React.FC = () => {
               type="number"
               className={`form-control mb-3 ${listFault.includes(i) ? "failed" : ""} `}
               name={`answer${i}`}
+              placeholder="answer"
             />
           </div>
         </div>,
@@ -49,12 +50,15 @@ const Game: React.FC = () => {
               }
             }
             setListFault(listFault);
-            setResult({
-              playerName: result.playerName,
-              score: score,
-              problemCount: result.problemCount,
-              factor: result.factor,
-            });
+            setResults([
+              ...results,
+              {
+                playerName: result.playerName,
+                score: score,
+                problemCount: result.problemCount,
+                factor: result.factor,
+              },
+            ]);
           }}
         >
           {buildForm()}

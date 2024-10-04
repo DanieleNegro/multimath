@@ -4,7 +4,11 @@ import "../../App.css";
 import { usePlayerContext } from "../../context/PlayerContext";
 import { Player } from "../../models/Player";
 
-const PlayerForm: React.FC = () => {
+interface IPlayerForm {
+  start: () => void;
+}
+
+const PlayerForm: React.FC<IPlayerForm> = ({ start }) => {
   const playerNameRef = useRef<HTMLInputElement>(null);
   const factorRef = useRef<HTMLInputElement>(null);
   const numberProblemsRef = useRef<HTMLInputElement>(null);
@@ -31,6 +35,7 @@ const PlayerForm: React.FC = () => {
 
   const startGame = (e: any): void => {
     e.preventDefault();
+    start();
     setPlayer(new Player(playerName, 37, 0));
     setResult({
       playerName: playerName,

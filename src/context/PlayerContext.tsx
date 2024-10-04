@@ -7,15 +7,19 @@ import { DEFAULT_RESULT_STATE, IResult } from "../models/Result";
 interface IPlayerContext {
   player: Player;
   result: IResult;
+  results: IResult[];
   setPlayer: (value: Player) => void;
   setResult: (value: IResult) => void;
+  setResults: (value: IResult[]) => void;
 }
 
 const DEFAULT_STATE_CONTEXT = {
   player: new Player(),
   result: DEFAULT_RESULT_STATE,
+  results: [],
   setPlayer: () => {},
   setResult: () => {},
+  setResults: () => {},
 };
 
 export const PlayerContext = createContext<IPlayerContext>(
@@ -25,12 +29,15 @@ export const PlayerContext = createContext<IPlayerContext>(
 export function PlayerProvider({ children }: Props) {
   const [player, setPlayer] = useState<Player>(new Player());
   const [result, setResult] = useState<IResult>(DEFAULT_RESULT_STATE);
+  const [results, setResults] = useState<IResult[]>([]);
 
   const provider = {
     player,
-    setPlayer,
     result,
+    results,
+    setPlayer,
     setResult,
+    setResults,
   };
 
   return (
