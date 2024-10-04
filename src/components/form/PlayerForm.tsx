@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState } from "react";
 import "../../App.css";
 import { usePlayerContext } from "../../context/PlayerContext";
+import { Player } from "../../models/Player";
 
 const PlayerForm: React.FC = () => {
   const playerNameRef = useRef<HTMLInputElement>(null);
   const factorRef = useRef<HTMLInputElement>(null);
   const numberProblemsRef = useRef<HTMLInputElement>(null);
-  const { setPlayer } = usePlayerContext();
+  const { setPlayer, setResult } = usePlayerContext();
   const [playerName, setPlayerName] = useState("");
   const [factor, setFactor] = useState("");
   const [numProblems, setNumProblems] = useState("");
@@ -29,11 +31,12 @@ const PlayerForm: React.FC = () => {
 
   const startGame = (e: any): void => {
     e.preventDefault();
-    setPlayer({
-      name: playerName,
-      factor: factor,
-      numPreblems: numProblems,
-      score: 80,
+    setPlayer(new Player(playerName, 37, 0));
+    setResult({
+      playerName: playerName,
+      score: 0,
+      problemCount: parseInt(numProblems, 10),
+      factor: parseInt(factor, 10),
     });
   };
 
@@ -97,9 +100,6 @@ const PlayerForm: React.FC = () => {
               onClick={startGame}
             >
               Start Game
-            </button>
-            <button type="button" className="btn btn-green btn-primary">
-              Calculate Score
             </button>
           </div>
         </div>

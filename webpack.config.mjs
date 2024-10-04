@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import path from "node:path";
 import * as Repack from "@callstack/repack";
 import HtmlWebpackPlugin from "html-webpack-plugin";

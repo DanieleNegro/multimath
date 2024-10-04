@@ -1,40 +1,36 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { createContext, useContext, useState } from "react";
 import { Props } from "./Props";
-
-interface IPlayer {
-  name: string;
-  factor: string;
-  numPreblems: string;
-  score: number;
-}
+import { Player } from "../models/Player";
+import { DEFAULT_RESULT_STATE, IResult } from "../models/Result";
 
 interface IPlayerContext {
-  player: IPlayer;
-  setPlayer: (value: IPlayer) => void;
+  player: Player;
+  result: IResult;
+  setPlayer: (value: Player) => void;
+  setResult: (value: IResult) => void;
 }
 
-const DEFAULT_STATE: IPlayer = {
-  name: "",
-  factor: "",
-  numPreblems: "",
-  score: 0,
-};
-
 const DEFAULT_STATE_CONTEXT = {
-  player: DEFAULT_STATE,
+  player: new Player(),
+  result: DEFAULT_RESULT_STATE,
   setPlayer: () => {},
+  setResult: () => {},
 };
 
 export const PlayerContext = createContext<IPlayerContext>(
   DEFAULT_STATE_CONTEXT,
 );
 
-export function PlayerProvider({ children, ...props }: Props) {
-  const [player, setPlayer] = useState<IPlayer>(DEFAULT_STATE);
+export function PlayerProvider({ children }: Props) {
+  const [player, setPlayer] = useState<Player>(new Player());
+  const [result, setResult] = useState<IResult>(DEFAULT_RESULT_STATE);
 
   const provider = {
     player,
     setPlayer,
+    result,
+    setResult,
   };
 
   return (
