@@ -34,6 +34,7 @@ export default (env) => {
         directory: path.join(dirname, "public"),
       },
       compress: true,
+      historyApiFallback: true,
     },
     resolve: {
       extensions: [".*", ".js", ".jsx", "css", ".tsx", ".ts"],
@@ -41,6 +42,7 @@ export default (env) => {
     output: {
       filename: "bundle.js",
       path: path.resolve(dirname, "dist"),
+      publicPath: "/rts",
     },
     plugins: [
       new HtmlWebpackPlugin({
