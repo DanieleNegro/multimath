@@ -17,6 +17,11 @@ const Navabar: React.FC = () => {
               MultiMath
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link active" to="/library">
+              Library
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

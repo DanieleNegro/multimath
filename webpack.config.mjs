@@ -28,6 +28,12 @@ export default (env) => {
       ],
     },
     devServer: {
+      proxy: [
+        {
+          context: ["/api"],
+          target: "http://localhost:8081",
+        },
+      ],
       port: 3000,
       open: true,
       static: {

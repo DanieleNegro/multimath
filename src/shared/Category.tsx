@@ -1,7 +1,7 @@
 export enum Category {
-  Biography,
-  Poetry,
-  Fiction,
-  History,
-  Children,
+  Algebra,
+  Calculus,
+  Geometry,
+  Statistics,
+  Trigonometry,
 }

@@ -19,7 +19,12 @@ const WelcomeHome: React.FC = () => {
             </div>
           </li>
           <li className="list-group-item">
-            <h4>Library manager</h4>
+            <div className="d-flex align-items-center">
+              <h4>Library manager</h4>
+              <Link className="nav-link active m-0 ps-3" to="/library">
+                Try me!
+              </Link>
+            </div>
           </li>
         </ul>
       </div>

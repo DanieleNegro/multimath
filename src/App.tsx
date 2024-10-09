@@ -7,6 +7,7 @@ import WelcomeHome from "./components/home/WelcomeHome";
 import Spinner from "./shared/Spinner";
 
 const MultiMath = lazy(() => import("./components/MultiMath"));
+const Library = lazy(() => import("./components/Library"));
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,14 @@ const App: React.FC = () => {
           element={
             <Suspense fallback={<Spinner />}>
               <MultiMath />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/library"
+          element={
+            <Suspense fallback={<Spinner />}>
+              <Library />
             </Suspense>
           }
         />
