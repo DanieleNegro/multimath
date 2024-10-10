@@ -48,7 +48,7 @@ export default (env) => {
     output: {
       filename: "bundle.js",
       path: path.resolve(dirname, "dist"),
-      publicPath: "/rts",
+      publicPath: "/",
     },
     plugins: [
       new HtmlWebpackPlugin({
