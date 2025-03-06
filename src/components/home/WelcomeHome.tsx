@@ -13,7 +13,7 @@ const WelcomeHome: React.FC = () => {
           <li className="list-group-item">
             <div className="d-flex align-items-center">
               <h4>MultiMath: enjoy with multiplication table</h4>
-              <Link className="nav-link active m-0 ps-3" to="/multimath">
+              <Link className="nav-link active m-0 ps-3" to="/rts/multimath">
                 Try me!
               </Link>
             </div>
@@ -21,7 +21,7 @@ const WelcomeHome: React.FC = () => {
           <li className="list-group-item">
             <div className="d-flex align-items-center">
               <h4>Library manager</h4>
-              <Link className="nav-link active m-0 ps-3" to="/library">
+              <Link className="nav-link active m-0 ps-3" to="/rts/library">
                 Try me!
               </Link>
             </div>

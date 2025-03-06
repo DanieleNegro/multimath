@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { Category } from "../../../shared/Category";
+import { stringKeys } from "../../../shared/Category";
 import "../Library.css";
 import { cn } from "../../../shared/cn";
+import { useBookContext } from "../../../context/BookContext";
+import { useBooksService } from "../../../hooks/useBooksService";
 
-interface IFilters {
-  showAvailable: () => void;
-  onChageCategory: (valute: string) => void;
-}
-
-const Filters: React.FC<IFilters> = ({ showAvailable, onChageCategory }) => {
-  const stringKeys = Object.keys(Category).filter((v) => isNaN(Number(v)));
+const Filters: React.FC = () => {
+  const { setBooks } = useBookContext();
+  const { buildBookList, bookListByCategory, firstAvailable } =
+    useBooksService();
   const [dropdownToggle, setDropdownToggle] = useState(false);
   const [active, setActive] = useState(false);
+
   return (
     <div className="d-flex">
       <button
@@ -21,7 +21,7 @@ const Filters: React.FC<IFilters> = ({ showAvailable, onChageCategory }) => {
           { rule: { key: "btn-orange-active", constraint: active } },
         )}
         onClick={() => {
-          showAvailable();
+          firstAvailable(setBooks);
           setActive(!active);
         }}
       >
@@ -44,7 +44,7 @@ const Filters: React.FC<IFilters> = ({ showAvailable, onChageCategory }) => {
                 type="button"
                 className="dropdown-item"
                 onClick={() => {
-                  onChageCategory("all");
+                  buildBookList(setBooks);
                   setDropdownToggle(!dropdownToggle);
                 }}
               >
@@ -58,7 +58,10 @@ const Filters: React.FC<IFilters> = ({ showAvailable, onChageCategory }) => {
                     type="button"
                     className="dropdown-item"
                     onClick={() => {
-                      onChageCategory(category);
+                      const key = stringKeys.findIndex(
+                        (item) => item === category,
+                      );
+                      bookListByCategory(setBooks, key);
                       setDropdownToggle(!dropdownToggle);
                     }}
                   >

@@ -1,6 +1,6 @@
 import { IBeBook } from "../models/BeBook";
 
-interface BadRequest {
+export interface BadRequest {
   code: "bad_request";
   message: string;
 }
@@ -55,7 +55,18 @@ export const getAvailableBooks = async () => {
 };
 
 export const getBooksByCategory = async (category: number) => {
-  const url = `${BASEURI}/search?category=${category}`;
+  const url = `${BASEURI}/search/${category}`;
+  const options = {
+    method: "GET",
+  };
+  const data = await fetch(url, options).then((response) =>
+    responseHandler(response),
+  );
+  return data;
+};
+
+export const getBooksByTerm = async (term: string) => {
+  const url = `${BASEURI}/search?term=${term}`;
   const options = {
     method: "GET",
   };

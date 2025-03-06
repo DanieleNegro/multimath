@@ -5,3 +5,7 @@ export enum Category {
   Statistics,
   Trigonometry,
 }
+
+export const stringKeys = Object.keys(Category).filter((v) => isNaN(Number(v)));
+
+export const all = "all";

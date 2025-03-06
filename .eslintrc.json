@@ -16,7 +16,14 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "jsx", "flow", "typescript"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "jsx",
+    "flow",
+    "typescript",
+    "unused-imports"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -32,7 +39,8 @@
     "no-console": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-explicit-any":"off",
-    "@typescript-eslint/no-empty-function":"off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "unused-imports/no-unused-imports": "error"
   }
 }
