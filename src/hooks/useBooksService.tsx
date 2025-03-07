@@ -8,9 +8,11 @@ import {
 } from "../shared/LibraryService";
 import { IBeBook } from "../models/BeBook";
 import { useTranslation } from "react-i18next";
+import { useBookContext } from "../context/BookContext";
 
 export function useBooksService() {
   const { t } = useTranslation(["libraryPage"]);
+  const { setIsLoading } = useBookContext();
   const mapResponse = (
     data: IBeBook | IBeBook[] | BadRequest | Error,
   ): IBook[] => {
@@ -30,16 +32,20 @@ export function useBooksService() {
   };
 
   const buildBookList = async (callback: (list: IBook[]) => void) => {
+    setIsLoading(true);
     const list = await getAllBooks().then((data) => {
       return mapResponse(data);
     });
+    setIsLoading(false);
     callback(list);
   };
 
   const firstAvailable = async (callback: (list: IBook[]) => void) => {
+    setIsLoading(true);
     const list = await getAvailableBooks().then((data) => {
       return mapResponse(data);
     });
+    setIsLoading(false);
     callback(list);
   };
 
@@ -47,9 +53,11 @@ export function useBooksService() {
     callback: (list: IBook[]) => void,
     category: number,
   ) => {
+    setIsLoading(true);
     const list = await getBooksByCategory(category).then((data) => {
       return mapResponse(data);
     });
+    setIsLoading(false);
     callback(list);
   };
 
@@ -57,9 +65,11 @@ export function useBooksService() {
     callback: (list: IBook[]) => void,
     term: string,
   ) => {
+    setIsLoading(true);
     const list = await getBooksByTerm(term).then((data) => {
       return mapResponse(data);
     });
+    setIsLoading(false);
     callback(list);
   };
 
