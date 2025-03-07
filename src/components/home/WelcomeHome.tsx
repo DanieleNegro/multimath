@@ -1,28 +1,30 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 const WelcomeHome: React.FC = () => {
+  const { t } = useTranslation(["welcomePage"]);
   return (
     <div className="container-fluid h-100 mt-5">
       <div className="d-flex flex-column text-center">
-        <h1>Welcome home in this React Typescript App</h1>
-        <h2>This app has two pages:</h2>
+        <h1>{t("title")}</h1>
+        <h2>{t("subTitle")}</h2>
       </div>
       <div className="d-flex justify-content-center">
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
             <div className="d-flex align-items-center">
-              <h4>MultiMath: enjoy with multiplication table</h4>
+              <h4>{t("labels.multiMath")}</h4>
               <Link className="nav-link active m-0 ps-3" to="/rts/multimath">
-                Try me!
+                {t("labels.tryMe")}
               </Link>
             </div>
           </li>
           <li className="list-group-item">
             <div className="d-flex align-items-center">
-              <h4>Library manager</h4>
+              <h4>{t("labels.library")}</h4>
               <Link className="nav-link active m-0 ps-3" to="/rts/library">
-                Try me!
+                {t("labels.tryMe")}
               </Link>
             </div>
           </li>

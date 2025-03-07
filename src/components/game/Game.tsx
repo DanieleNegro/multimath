@@ -2,8 +2,10 @@ import React, { useRef, useState } from "react";
 import "../../App.css";
 import "./Game.css";
 import { usePlayerContext } from "../../context/PlayerContext";
+import { useTranslation } from "react-i18next";
 
 const Game: React.FC = () => {
+  const { t } = useTranslation(["multimathPage"]);
   const { result, results, setResults } = usePlayerContext();
   const inputsRef = useRef<HTMLInputElement[]>([]);
   const [listFault, setListFault] = useState<number[]>([]);
@@ -23,7 +25,7 @@ const Game: React.FC = () => {
               type="number"
               className={`form-control mb-3 ${listFault.includes(i) ? "failed" : ""} `}
               name={`answer${i}`}
-              placeholder="answer"
+              placeholder={t("placeholders.answer")}
             />
           </div>
         </div>,
@@ -67,7 +69,7 @@ const Game: React.FC = () => {
             <div className="col-sm-10 ms-4">
               <input
                 type="submit"
-                value="Calculate Score"
+                value={t("labels.calculateBtn")}
                 className="btn btn-green btn-primary"
               />
             </div>

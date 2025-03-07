@@ -1,8 +1,10 @@
 import React from "react";
 import { useBookContext } from "../../../context/BookContext";
 import { useBooksService } from "../../../hooks/useBooksService";
+import { useTranslation } from "react-i18next";
 
 const Search: React.FC = () => {
+  const { t } = useTranslation(["libraryPage"]);
   const { setBooks } = useBookContext();
   const { searchBooksByTerm } = useBooksService();
 
@@ -22,13 +24,13 @@ const Search: React.FC = () => {
         className="form-control rounded-0"
         id="searchInput"
         aria-describedby="searchInput"
-        placeholder="Search books"
+        placeholder={t("labels.inputSearch")}
       />
       <button
         type="submit"
         className="btn btn-orange btn-primary rounded-0 ms-1"
       >
-        Search
+        {t("labels.search")}
       </button>
     </form>
   );

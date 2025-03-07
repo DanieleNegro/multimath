@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import "../../App.css";
 import { usePlayerContext } from "../../context/PlayerContext";
 import { Player } from "../../models/Player";
@@ -9,6 +10,7 @@ interface IPlayerForm {
 }
 
 const PlayerForm: React.FC<IPlayerForm> = ({ start }) => {
+  const { t } = useTranslation(["multimathPage"]);
   const playerNameRef = useRef<HTMLInputElement>(null);
   const factorRef = useRef<HTMLInputElement>(null);
   const numberProblemsRef = useRef<HTMLInputElement>(null);
@@ -50,14 +52,14 @@ const PlayerForm: React.FC<IPlayerForm> = ({ start }) => {
       <div className="form-horizontal">
         <div className="form-group d-flex text-end">
           <label htmlFor="playername" className="col-sm-2 control-label me-4">
-            Player Name
+            {t("labels.playerName")}
           </label>
           <div className="col-sm-2">
             <input
               ref={playerNameRef}
               type="text"
               className="form-control mb-3"
-              placeholder="Player Name"
+              placeholder={t("placeholders.playerName")}
               value={playerName}
               onChange={onChangeName}
             />
@@ -65,14 +67,16 @@ const PlayerForm: React.FC<IPlayerForm> = ({ start }) => {
         </div>
         <div className="form-group d-flex text-end">
           <label htmlFor="factor" className="col-sm-2 control-label me-4">
-            Factor
+            {t("labels.factor")}
           </label>
           <div className="col-sm-2">
             <input
               ref={factorRef}
-              type="text"
+              type="number"
+              min="1"
+              pattern="[0-9]{1}"
               className="form-control mb-3"
-              placeholder="Factor"
+              placeholder={t("placeholders.factor")}
               value={factor}
               onChange={onChangeFctor}
             />
@@ -83,14 +87,16 @@ const PlayerForm: React.FC<IPlayerForm> = ({ start }) => {
             htmlFor="problemcounter"
             className="col-sm-2 control-label me-4"
           >
-            Number of Problems
+            {t("labels.nProblems")}
           </label>
           <div className="col-sm-2">
             <input
               ref={numberProblemsRef}
-              type="text"
+              type="number"
+              min="1"
+              pattern="[0-9]{1}"
               className="form-control mb-3"
-              placeholder="Number of Problems"
+              placeholder={t("placeholders.nProblems")}
               value={numProblems}
               onChange={onChangeNumProblems}
             />
@@ -104,7 +110,7 @@ const PlayerForm: React.FC<IPlayerForm> = ({ start }) => {
               className="btn btn-orange btn-primary me-2"
               onClick={startGame}
             >
-              Start Game
+              {t("labels.starBtn")}
             </button>
           </div>
         </div>

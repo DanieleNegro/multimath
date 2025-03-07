@@ -4,8 +4,10 @@ import "../Library.css";
 import { cn } from "../../../shared/cn";
 import { useBookContext } from "../../../context/BookContext";
 import { useBooksService } from "../../../hooks/useBooksService";
+import { useTranslation } from "react-i18next";
 
 const Filters: React.FC = () => {
+  const { t } = useTranslation(["libraryPage"]);
   const { setBooks } = useBookContext();
   const { buildBookList, bookListByCategory, firstAvailable } =
     useBooksService();
@@ -25,7 +27,7 @@ const Filters: React.FC = () => {
           setActive(!active);
         }}
       >
-        Available
+        {t("labels.available")}
       </button>
       <div className="position-relative">
         <button
@@ -35,7 +37,7 @@ const Filters: React.FC = () => {
             setDropdownToggle(!dropdownToggle);
           }}
         >
-          Filter by Category
+          {t("labels.filterBy")}
         </button>
         {dropdownToggle && (
           <ul className="list-group list-group-flush border position-absolute w-100">
@@ -48,10 +50,10 @@ const Filters: React.FC = () => {
                   setDropdownToggle(!dropdownToggle);
                 }}
               >
-                All
+                {t("defaultCategory")}
               </button>
             </li>
-            {stringKeys.map((category) => {
+            {stringKeys.map((category, index) => {
               return (
                 <li key={category} className="list-group-item highlight">
                   <button
@@ -65,7 +67,7 @@ const Filters: React.FC = () => {
                       setDropdownToggle(!dropdownToggle);
                     }}
                   >
-                    {category}
+                    {t(`categories.${index}`)}
                   </button>
                 </li>
               );

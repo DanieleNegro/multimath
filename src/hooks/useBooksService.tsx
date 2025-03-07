@@ -1,4 +1,3 @@
-import { Category } from "../shared/Category";
 import { IBook } from "../models/Book";
 import {
   BadRequest,
@@ -8,8 +7,10 @@ import {
   getBooksByTerm,
 } from "../shared/LibraryService";
 import { IBeBook } from "../models/BeBook";
+import { useTranslation } from "react-i18next";
 
 export function useBooksService() {
+  const { t } = useTranslation(["libraryPage"]);
   const mapResponse = (
     data: IBeBook | IBeBook[] | BadRequest | Error,
   ): IBook[] => {
@@ -21,7 +22,7 @@ export function useBooksService() {
           title: element.title,
           author: element.author,
           available: element.available.toLowerCase() === "y",
-          category: Category[beCatory],
+          category: t(`categories.${beCatory}`),
         });
       });
     }

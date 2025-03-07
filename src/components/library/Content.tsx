@@ -1,23 +1,25 @@
+import { useTranslation } from "react-i18next";
 import available from "../../assets/available.png";
 import notAvailable from "../../assets/notAvailable.png";
 import { useBookContext } from "../../context/BookContext";
 
 const Content: React.FC = () => {
+  const { t } = useTranslation(["libraryPage"]);
   const { books } = useBookContext();
   return (
     <div className="container-fluid mx-0 mt-3 px-5 d-flex justify-content-center flex-column">
       <div key="book" className="row d-flex text-center">
         <div className="col-4 bg-orange header border-end border-bottom">
-          <h4>Title</h4>
+          <h4>{t("columns.title")}</h4>
         </div>
         <div className="col-4 bg-orange header border-end border-bottom">
-          <h4>Author</h4>
+          <h4>{t("columns.author")}</h4>
         </div>
         <div className="col-2 bg-orange header border-bottom">
-          <h4>Category</h4>
+          <h4>{t("columns.category")}</h4>
         </div>
         <div className="col-2 bg-orange header border-bottom">
-          <h4>Available</h4>
+          <h4>{t("columns.available")}</h4>
         </div>
       </div>
       {books.map((book, index) => {

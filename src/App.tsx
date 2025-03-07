@@ -6,6 +6,7 @@ import Navabar from "./components/navbar/Navbar";
 import WelcomeHome from "./components/home/WelcomeHome";
 import MultiMath from "./components/MultiMath";
 import Library from "./components/library/Library";
+import "./localization/i18n";
 
 const App: React.FC = () => {
   return (
