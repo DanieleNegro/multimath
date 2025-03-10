@@ -15,3 +15,14 @@ export class Player implements IUser {
     return this.name.toUpperCase();
   }
 }
+
+export interface FormElements extends HTMLFormControlsCollection {
+  playerName: HTMLInputElement;
+  playerAge: HTMLInputElement;
+  factor: HTMLInputElement;
+  numProblems: HTMLInputElement;
+}
+
+export interface PlayerFormElement extends HTMLFormElement {
+  readonly elements: FormElements;
+}

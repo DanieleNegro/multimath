@@ -28,12 +28,19 @@ export default (env) => {
       ],
     },
     devServer: {
+      proxy: [
+        {
+          context: ["/api"],
+          target: "http://localhost:8081",
+        },
+      ],
       port: 3000,
       open: true,
       static: {
         directory: path.join(dirname, "public"),
       },
       compress: true,
+      historyApiFallback: true,
     },
     resolve: {
       extensions: [".*", ".js", ".jsx", "css", ".tsx", ".ts"],
@@ -41,6 +48,7 @@ export default (env) => {
     output: {
       filename: "bundle.js",
       path: path.resolve(dirname, "dist"),
+      publicPath: "/",
     },
     plugins: [
       new HtmlWebpackPlugin({

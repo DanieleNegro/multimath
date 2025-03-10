@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { Props } from "./Props";
 
 interface IMessageContext {
@@ -8,12 +8,14 @@ interface IMessageContext {
 
 const DEFAULT_STATE: IMessageContext = {
   text: "",
-  setText: () => {},
+  setText: () => {
+    console.debug("");
+  },
 };
 
 export const MessageContext = createContext<IMessageContext>(DEFAULT_STATE);
 
-export function MessageProvider({ children, ...props }: Props) {
+export function MessageProvider({ children }: Props) {
   const [text, setText] = useState<string>("");
 
   const provider = {

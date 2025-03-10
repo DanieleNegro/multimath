@@ -7,7 +7,32 @@
   border-color: #a5360f;
 }
 
+.btn-orange:hover {
+  background-color: #ae3910;
+  border-color: #a5360f;
+  opacity: 0.8;
+}
+
+.btn-orange-active {
+  opacity: 0.8;
+}
+
 .btn-green {
   background-color: #38b44a;
   border-color: #38b44a;
+}
+
+form,
+.scoreBoard {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+label {
+  width: 400px;
+}
+
+input {
+  max-width: 400px;
 }
