@@ -1,7 +1,13 @@
 .header {
-  color: whitesmoke
+  color: whitesmoke;
 }
 
 .highlight:hover {
   background-color: #ffe5d0;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  width: auto;
 }
