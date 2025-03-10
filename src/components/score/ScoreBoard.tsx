@@ -1,4 +1,5 @@
 import React from "react";
+import "../../App.css";
 import { usePlayerContext } from "../../context/PlayerContext";
 import { useTranslation } from "react-i18next";
 
@@ -6,9 +7,8 @@ const ScoreBoard: React.FC = () => {
   const { t } = useTranslation(["multimathPage"]);
   const { results } = usePlayerContext();
   return (
-    <div className="container-fluid d-flex mt-5">
-      <div className="col-sm-2" />
-      <div className="col-sm-10 ms-4">
+    <div className="container-fluid d-flex justify-content-center mt-5">
+      <div className="scoreBoard">
         <h2>{t("score.title")}</h2>
         {results.length > 0 ? (
           results.map((item) => {

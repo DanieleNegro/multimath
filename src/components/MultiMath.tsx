@@ -12,8 +12,10 @@ const MultiMath: React.FC = () => {
     <MessageProvider>
       <PlayerProvider>
         <div className="container-fluid mx-0 px-0">
-          <PlayerForm start={() => setGameId(gameId + 1)} />
-          <Game key={gameId} />
+          <div className="container-fluid mx-0 px-0 d-flex ">
+            <PlayerForm start={() => setGameId(gameId + 1)} />
+            <Game key={gameId} />
+          </div>
           <ScoreBoard />
           <Message />
         </div>
