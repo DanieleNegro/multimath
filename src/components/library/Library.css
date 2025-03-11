@@ -6,8 +6,12 @@
   background-color: #ffe5d0;
 }
 
-form {
+.header form {
   display: flex;
   flex-direction: row;
   width: auto;
+}
+
+.header h2 {
+  color: black;
 }
