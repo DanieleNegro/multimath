@@ -36,3 +36,7 @@ label {
 input {
   max-width: 400px;
 }
+
+p {
+  width: auto;
+}

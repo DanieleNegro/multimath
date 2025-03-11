@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import "../../App.css";
-import { usePlayerContext } from "../../context/PlayerContext";
 import { Player, PlayerFormElement } from "../../models/Player";
+import { useGameStore } from "../../store/GameStore";
 
 interface IPlayerForm {
   start: () => void;
@@ -10,7 +10,7 @@ interface IPlayerForm {
 
 const PlayerForm: React.FC<IPlayerForm> = ({ start }) => {
   const { t } = useTranslation(["multimathPage"]);
-  const { setPlayer, setResult, reset } = usePlayerContext();
+  const { player, setPlayer, setResult, reset } = useGameStore();
 
   const startGame = (event: React.FormEvent<PlayerFormElement>): void => {
     event.preventDefault();
@@ -42,6 +42,10 @@ const PlayerForm: React.FC<IPlayerForm> = ({ start }) => {
           name="playerName"
           className="form-control mb-3"
           placeholder={t("placeholders.playerName")}
+          value={player.name}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setPlayer(new Player(e.target.value, player.age, 0));
+          }}
         />
         <label htmlFor="playerage" className="control-label">
           {t("labels.playerAge")}
@@ -52,6 +56,10 @@ const PlayerForm: React.FC<IPlayerForm> = ({ start }) => {
           min="1"
           className="form-control mb-3"
           placeholder={t("placeholders.playerAge")}
+          value={player.age}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setPlayer(new Player(player.name, parseInt(e.target.value, 10), 0));
+          }}
         />
         <label htmlFor="factor" className="control-label">
           {t("labels.factor")}

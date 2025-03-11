@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
 import "../../App.css";
 import "./Game.css";
-import { usePlayerContext } from "../../context/PlayerContext";
 import { useTranslation } from "react-i18next";
 import { useMessageContext } from "../../context/MessageContext";
+import { useGameStore } from "../../store/GameStore";
 
 const Game: React.FC = () => {
   const { t } = useTranslation(["multimathPage"]);
   const { setText } = useMessageContext();
-  const { result, results, setResults } = usePlayerContext();
+  const { result, results, setResults } = useGameStore();
   const inputsRef = useRef<HTMLInputElement[]>([]);
   const [listFault, setListFault] = useState<number[]>([]);
 

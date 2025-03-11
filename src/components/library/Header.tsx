@@ -5,7 +5,7 @@ import Search from "./search/Search";
 const Header: React.FC = () => {
   const { t } = useTranslation(["libraryPage"]);
   return (
-    <div className="d-flex justify-content-center">
+    <div className="header d-flex justify-content-center">
       <h2>{t("title")}</h2>
       <Search />
       <Filters />

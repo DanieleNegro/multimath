@@ -1,11 +1,11 @@
 import React from "react";
 import "../../App.css";
-import { usePlayerContext } from "../../context/PlayerContext";
 import { useTranslation } from "react-i18next";
+import { useGameStore } from "../../store/GameStore";
 
 const ScoreBoard: React.FC = () => {
   const { t } = useTranslation(["multimathPage"]);
-  const { results } = usePlayerContext();
+  const { results } = useGameStore();
   return (
     <div className="container-fluid d-flex justify-content-center mt-5">
       <div className="scoreBoard">

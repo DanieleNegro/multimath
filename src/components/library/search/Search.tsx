@@ -2,6 +2,7 @@ import React from "react";
 import { useBookContext } from "../../../context/BookContext";
 import { useBooksService } from "../../../hooks/useBooksService";
 import { useTranslation } from "react-i18next";
+import "../Library.css";
 
 const Search: React.FC = () => {
   const { t } = useTranslation(["libraryPage"]);
@@ -18,7 +19,7 @@ const Search: React.FC = () => {
   };
 
   return (
-    <form className="d-flex ms-2 me-0" onSubmit={handleSubmit}>
+    <form className="ms-2 me-0" onSubmit={handleSubmit}>
       <input
         type="text"
         className="form-control rounded-0"
